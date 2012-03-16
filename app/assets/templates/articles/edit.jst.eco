@@ -1,0 +1,3 @@
+<h1>Editing <%= @article.get('title')%></h1>
+<div class="edit-article-form"></div>
+<button class="js-submit-form">Save</button>
