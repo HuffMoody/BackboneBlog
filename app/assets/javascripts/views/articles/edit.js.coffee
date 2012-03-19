@@ -4,6 +4,7 @@ class BackboneBlog.Views.ArticleEdit extends Backbone.View
   events:
     'click .js-save-button': 'submitForm'
     'click .js-back-button': 'goBack'
+    'submit form': 'submitForm'
   
   initialize: ->
     # Create Form
