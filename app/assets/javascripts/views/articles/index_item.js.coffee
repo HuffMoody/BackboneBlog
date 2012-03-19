@@ -1,15 +1,23 @@
 class BackboneBlog.Views.ArticlesIndexItem extends Backbone.View
   template: JST['articles/index_item']
-  tagName: 'li'
+  tagName: 'article'
   
   events:
     'click .js-edit-article': 'editArticle'
+    'click .js-show-article': 'showArticle'
+    'click .js-destroy-article': 'destroyArticle'
   
   render: ->
     $(@el).html(@template(article: @model))
     this
     
   editArticle: ->
-    article_id = @$('input[name="article_id"]').val()
-    Backbone.history.navigate("/articles/#{article_id}/edit", true)
+    Backbone.history.navigate("/articles/#{@model.id}/edit", true)
+  
+  showArticle: ->
+    Backbone.history.navigate("/articles/#{@model.id}", true)
+  
+  destroyArticle: ->
+    @model.destroy()
+    $(@el).remove()
   

@@ -1,20 +1,19 @@
-class BackboneBlog.Views.ArticleEdit extends Backbone.View
-  template: JST['articles/edit']
+class BackboneBlog.Views.ArticleNew extends Backbone.View
+  template: JST['articles/new']
   
   events:
     'click .js-save-button': 'submitForm'
     'click .js-back-button': 'goBack'
   
   initialize: ->
-    # Create Form
     @form = new Backbone.Form
       model: @model
-    
-    # Setup Events
-    @model.on 'change', @render, this
+    @model.on 'change', =>
+      Backbone.history.navigate("/articles/#{@model.id}", true)
   
   render: ->
-    $(@el).html(@template(article: @model)).append(@form.render().el)
+    $(@el).html(@template(article: @model))
+    @$('.new-article-form').html(@form.render().el)
     this
     
   submitForm: (event)->
@@ -25,3 +24,4 @@ class BackboneBlog.Views.ArticleEdit extends Backbone.View
   goBack: (event)->
     event.preventDefault()
     Backbone.history.navigate '/articles', true
+        

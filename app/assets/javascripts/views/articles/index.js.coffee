@@ -1,5 +1,8 @@
 class BackboneBlog.Views.ArticlesIndex extends Backbone.View
   template: JST['articles/index']
+  
+  events:
+    'click .js-new-article': 'newArticle'
 
   initialize: ->
     @collection.on('reset', @render, this)
@@ -8,5 +11,8 @@ class BackboneBlog.Views.ArticlesIndex extends Backbone.View
     $(@el).html(@template())
     _.each @collection.models, (model)=> 
       view = new BackboneBlog.Views.ArticlesIndexItem(model: model)
-      @$('ul').append(view.render().el)
+      @$('section').append(view.render().el)
     this
+    
+  newArticle: ->
+    Backbone.history.navigate('/articles/new', true)

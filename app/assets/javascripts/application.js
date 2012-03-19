@@ -12,9 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require twitter/bootstrap
 //= require jquery-ui
 //= require underscore
 //= require backbone
+//= require backbone-forms
+//= require backbone-forms-bootstrap
+//= require bootstrap
 
 //= require backbone_blog
 
@@ -23,4 +27,4 @@
 //= require_tree ./collections
 //= require_tree ./views
 //= require_tree ./routers
-//= require_tree .
+

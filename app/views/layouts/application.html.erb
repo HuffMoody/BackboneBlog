@@ -2,13 +2,26 @@
 <html>
 <head>
   <title>BackboneBlog</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="container">
-    <%= yield %>
+  <div class="navbar">
+    <div class="navbar-inner">
+      <div class="container">
+        <a class="brand">Backbone Forms</a>
+        <ul class="nav">
+          <li><%= link_to "Home", "/"  %></li>
+          <li><%= link_to "Articles", "/articles"  %></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div id="content" class="span9"><%= yield %></div>
+    </div>
   </div>
 </body>
 </html>

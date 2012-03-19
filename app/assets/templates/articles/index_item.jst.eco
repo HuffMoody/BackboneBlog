@@ -1,3 +1,6 @@
-<input type="hidden" name="article_id" value="<%= @article.get('id')%>" />
-<h1><%= @article.get('title')%></h1>
-<button class="js-edit-article">Edit Article</button>
+<h2><%= @article.get('title')%></h2>
+<%= @article.get('content') %>
+<div class="btn-group">
+<button class="js-show-article btn btn-large">Show Article</button>
+<button class="js-edit-article btn btn-large">Edit Article</button>
+<button class="js-destroy-article btn btn-large">Destroy Article</button>

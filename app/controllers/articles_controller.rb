@@ -12,4 +12,21 @@ class ArticlesController < ApplicationController
     @article.update_attributes(params[:article])
     respond_with @article
   end
+  
+  def show
+    @article = Article.find(params[:id])
+    respond_with @article
+  end
+  
+  def destroy
+    @article = Article.find(params[:id])
+    @article.destroy()
+    respond_with @article
+  end
+  
+  def create
+    @article = Article.new params[:article]
+    @article.save
+    respond_with @article
+  end
 end

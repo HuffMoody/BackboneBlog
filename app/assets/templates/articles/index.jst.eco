@@ -1,4 +1,3 @@
 <h1>Articles</h1>
-
-<ul>
-</ul>
+<div class="btn-group"><button class="js-new-article btn btn-large">New Article</button></div>
+<section></section>

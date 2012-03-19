@@ -10,3 +10,8 @@ window.BackboneBlog =
 
 $(document).ready ->
   BackboneBlog.init()
+  
+  # setup navigation paths
+  $('.navbar .nav a').live 'click', (event)->
+    event.preventDefault()
+    Backbone.history.navigate $(this).attr('href'), true

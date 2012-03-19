@@ -1,0 +1,12 @@
+<h1><%= @article.get('title') %></h1>
+<p>
+  <% if @article.get('published') : %>
+    <span class="label">Published</span>
+  <% else : %>
+    <span class="label label-inverse">Unpublished</span>
+  <% end %>
+</p>
+<p><%= @article.get('content') %></p>
+<div class="btn-group">
+  <button class="js-back btn btn-large">Back</button>
+</div>
