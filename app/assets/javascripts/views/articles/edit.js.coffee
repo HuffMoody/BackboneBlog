@@ -25,4 +25,4 @@ class BackboneBlog.Views.ArticleEdit extends Backbone.View
     
   goBack: (event)->
     event.preventDefault()
-    Backbone.history.navigate '/articles', true
+    UrlHelper.navigate_to_collection('articles')

@@ -15,4 +15,4 @@ class BackboneBlog.Views.ArticlesIndex extends Backbone.View
     this
     
   newArticle: ->
-    Backbone.history.navigate('/articles/new', true)
+    UrlHelper.navigate_to_new_model('articles')

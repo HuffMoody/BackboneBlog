@@ -11,11 +11,11 @@ class BackboneBlog.Views.ArticlesIndexItem extends Backbone.View
     $(@el).html(@template(article: @model))
     this
     
-  editArticle: ->
-    Backbone.history.navigate("/articles/#{@model.id}/edit", true)
+  editArticle: (event)->
+    UrlHelper.navigate_to_edit_model(@model)
   
   showArticle: ->
-    Backbone.history.navigate("/articles/#{@model.id}", true)
+    UrlHelper.navigate_to_model(@model)
   
   destroyArticle: ->
     @model.destroy()

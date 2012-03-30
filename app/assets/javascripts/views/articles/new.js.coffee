@@ -10,7 +10,8 @@ class BackboneBlog.Views.ArticleNew extends Backbone.View
     @form = new Backbone.Form
       model: @model
     @model.on 'change', =>
-      Backbone.history.navigate("/articles/#{@model.id}", true)
+      # redirect to show after save
+      UrlHelper.navigate_to_model(model)
   
   render: ->
     $(@el).html(@template(article: @model))
@@ -24,5 +25,5 @@ class BackboneBlog.Views.ArticleNew extends Backbone.View
     
   goBack: (event)->
     event.preventDefault()
-    Backbone.history.navigate '/articles', true
+    UrlHelper.navigate_to_collection('articles')
         

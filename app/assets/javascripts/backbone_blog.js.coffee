@@ -4,14 +4,15 @@ window.BackboneBlog =
   Views: {}
   Routers: {}
   init: ->
+    # Initialize Routers
     new BackboneBlog.Routers.Articles()
+    
+    # Begin History
     Backbone.history.start
       pushState: true
+      
+    # Setup UrlHelpers
+    UrlHelper.setup_dom()
 
 $(document).ready ->
   BackboneBlog.init()
-  
-  # setup navigation paths
-  $('.navbar .nav a').live 'click', (event)->
-    event.preventDefault()
-    Backbone.history.navigate $(this).attr('href'), true

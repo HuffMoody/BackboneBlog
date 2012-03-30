@@ -12,4 +12,4 @@ class BackboneBlog.Views.ArticleShow extends Backbone.View
     this
     
   goBack: ->
-    Backbone.history.navigate '/articles', true
+    UrlHelper.navigate_to_collection('articles')
