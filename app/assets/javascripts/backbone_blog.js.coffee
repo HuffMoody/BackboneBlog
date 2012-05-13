@@ -13,6 +13,11 @@ window.BackboneBlog =
       
     # Setup UrlHelpers
     UrlHelper.setup_dom()
+    
+    # Setup Faye
+    faye = new Faye.Client('http://localhost:9292/faye')
+    faye.subscribe '/articles/new', (data)->
+      alert(data)
 
 $(document).ready ->
   BackboneBlog.init()
