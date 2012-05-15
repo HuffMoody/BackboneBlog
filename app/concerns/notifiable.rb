@@ -25,7 +25,7 @@ module Notifiable
       message = { 
         channel: "/model/#{self.class.name.downcase}/#{action}", 
         data: self.to_json, 
-        ext: { auth_toke: FAYE_TOKEN } 
+        ext: { auth_token: FAYE_TOKEN } 
       }
       uri = URI.parse("http://localhost:9292/faye")
       Net::HTTP.post_form(uri, message: message.to_json)
