@@ -9,9 +9,6 @@ class BackboneBlog.Views.ArticleNew extends Backbone.View
   initialize: ->
     @form = new Backbone.Form
       model: @model
-    @model.on 'change', =>
-      # redirect to show after save
-      UrlHelper.navigate_to_model(model)
   
   render: ->
     $(@el).html(@template(article: @model))
@@ -21,7 +18,9 @@ class BackboneBlog.Views.ArticleNew extends Backbone.View
   submitForm: (event)->
     event.preventDefault()
     @form.commit()
-    @model.save()
+    @model.save {},
+      success: =>
+        UrlHelper.navigate_to_model(@model)
     
   goBack: (event)->
     event.preventDefault()

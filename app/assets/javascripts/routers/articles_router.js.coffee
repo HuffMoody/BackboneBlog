@@ -1,4 +1,4 @@
-class BackboneBlog.Routers.Articles extends Backbone.Router
+class BackboneBlog.Routers.ArticlesRouter extends Backbone.Router
   routes:
     '': 'index'
     'articles': 'index'
@@ -6,28 +6,19 @@ class BackboneBlog.Routers.Articles extends Backbone.Router
     'articles/:id': 'show'
     'articles/:id/edit': 'edit'
     
+  constructor: ->
+    super()
+    @controller = new BackboneBlog.Controllers.ArticlesController()
+    
   index: ->
-    collection = new BackboneBlog.Collections.Articles()
-    collection.fetch()
-    view = new BackboneBlog.Views.ArticlesIndex(collection: collection)
-    @transition(view.render().el)
+    @controller.index()
     
   show: (id)->
-    model = new BackboneBlog.Models.Article(id: id)
-    model.fetch()
-    view = new BackboneBlog.Views.ArticleShow(model: model)
-    @transition(view.render().el)
+    @controller.show(id)
     
-  edit: (id)->    
-    model = new BackboneBlog.Models.Article(id: id)
-    model.fetch()
-    view = new BackboneBlog.Views.ArticleEdit(model: model)
-    @transition(view.render().el)
+  edit: (id)->  
+    @controller.edit(id)
 
   new: ->
-    model = new BackboneBlog.Models.Article()
-    view = new BackboneBlog.Views.ArticleNew(model: model)
-    @transition(view.render().el)
-    
-  transition: (el)->
-    $('#content').html(el)
+    @controller.new()
+  
