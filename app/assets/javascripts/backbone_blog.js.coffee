@@ -10,9 +10,15 @@ window.BackboneBlog =
     
     # Setup PubSub
     @Notifications = new Faye.Client('http://localhost:9292/faye')
+    ModelParseJSON =
+      incoming: (message, callback)->
+        if message.channel.match(/^\/model\/.*/)
+          message.data = $.parseJSON(message.data)
+        callback(message)
+    @Notifications.addExtension(ModelParseJSON)
     
     # Initialize Routers
-    router = new BackboneBlog.Routers.ArticlesRouter()
+    new BackboneBlog.Routers.ArticlesRouter()
     
     # Begin History
     Backbone.history.start

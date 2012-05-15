@@ -8,15 +8,17 @@ class BackboneBlog.Controllers.ArticlesController extends BackboneBlog.Controlle
     
     # Subscribe for notifications
     @subscribe '/model/article/created', (data)->
-      model = new BackboneBlog.Models.Article($.parseJSON(data))
+      model = new BackboneBlog.Models.Article(data)
       unless collection.get(model.id)
         collection.add(model)
+        
     @subscribe '/model/article/destroyed', (data)->
-      model = new BackboneBlog.Models.Article($.parseJSON(data))
+      model = new BackboneBlog.Models.Article(data)
       if collection.get(model.id)
         collection.remove(model)
+        
     @subscribe '/model/article/updated', (data)->
-      model = new BackboneBlog.Models.Article($.parseJSON(data))
+      model = new BackboneBlog.Models.Article(data)
       collection_model = collection.get(model.id)
       if collection_model?
         collection_model.set(model.attributes)
@@ -29,7 +31,7 @@ class BackboneBlog.Controllers.ArticlesController extends BackboneBlog.Controlle
     
     # Subscribe for notifications
     @subscribe '/model/article/updated', (data)->
-      model.set(new BackboneBlog.Models.Article($.parseJSON(data)).attributes)
+      model.set(new BackboneBlog.Models.Article(data).attributes)
 
   edit: (id)->  
     model = new BackboneBlog.Models.Article(id: id)
