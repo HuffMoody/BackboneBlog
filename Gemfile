@@ -11,6 +11,7 @@ gem 'backbone-on-rails'
 
 gem 'thin'
 gem 'faye'
+gem 'foreman'
 
 
 # Gems used only for assets and not required
