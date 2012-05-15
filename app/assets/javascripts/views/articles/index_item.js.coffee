@@ -9,6 +9,7 @@ class BackboneBlog.Views.ArticlesIndexItem extends Backbone.View
     
   initialize: ->
     @model.on 'change', @render, this
+    @collection.on 'remove', @destroyArticleFromCollection, this
   
   render: ->
     $(@el).html(@template(article: @model))
@@ -19,8 +20,12 @@ class BackboneBlog.Views.ArticlesIndexItem extends Backbone.View
   
   showArticle: ->
     UrlHelper.navigate_to_model(@model)
+    
+  destroyArticleFromCollection: (model)->
+    if model.id == @model.id
+      @destroyArticle()
   
-  destroyArticle: ->
+  destroyArticle: (model)->
     @model.destroy()
     $(@el).remove()
   
