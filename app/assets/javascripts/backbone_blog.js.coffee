@@ -17,6 +17,21 @@ window.BackboneBlog =
         callback(message)
     @Notifications.addExtension(ModelParseJSON)
     
+    Logger =
+      incoming: (message, callback)->
+        unless message.channel.match(/^\/meta\/.*/)
+          console.log("incoming--------")
+          console.log(message)
+          console.log("----------------")
+          callback(message)
+      outgoing: (message, callback)->
+        unless message.channel.match(/^\/meta\/.*/)
+          console.log("outgoing--------")
+          console.log(message)
+          console.log("----------------")
+          callback(message)
+    # @Notifications.addExtension(Logger)
+    
     # Initialize Routers
     new BackboneBlog.Routers.ArticlesRouter()
     

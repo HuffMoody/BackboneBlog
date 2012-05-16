@@ -10,7 +10,7 @@ class BackboneBlog.Views.ArticlesIndex extends Backbone.View
     
   render: ->
     $(@el).html(@template())
-    _.each @collection.models, (model)=> 
+    _(@collection.models).each (model)=> 
       @newArticleItem(model)
     this
     
@@ -18,5 +18,5 @@ class BackboneBlog.Views.ArticlesIndex extends Backbone.View
     UrlHelper.navigate_to_new_model('articles')
         
   newArticleItem: (model)->
-    view = new BackboneBlog.Views.ArticlesIndexItem(model: model, collection: @collection)
+    view = new BackboneBlog.Views.ArticlesIndexItem(model: model)
     @$('section').append(view.render().el)

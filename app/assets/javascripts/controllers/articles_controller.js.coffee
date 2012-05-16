@@ -7,21 +7,22 @@ class BackboneBlog.Controllers.ArticlesController extends BackboneBlog.Controlle
     @transition(view.render().el)
     
     # Subscribe for notifications
-    @subscribe '/model/article/created', (data)->
+    @single_subscribe '/model/article/created', (data)->
+      console.log("index created")
       model = new BackboneBlog.Models.Article(data)
       unless collection.get(model.id)
         collection.add(model)
         
-    @subscribe '/model/article/destroyed', (data)->
+    @single_subscribe '/model/article/destroyed', (data)->
       model = new BackboneBlog.Models.Article(data)
       if collection.get(model.id)
         collection.remove(model)
         
-    @subscribe '/model/article/updated', (data)->
-      model = new BackboneBlog.Models.Article(data)
-      collection_model = collection.get(model.id)
-      if collection_model?
-        collection_model.set(model.attributes)
+    @single_subscribe '/model/article/updated', (data)->
+      updated = new BackboneBlog.Models.Article(data)
+      model = collection.get(updated.id)
+      if model?
+        model.set(updated.attributes)
 
   show: (id)->
     model = new BackboneBlog.Models.Article(id: id)
@@ -30,8 +31,10 @@ class BackboneBlog.Controllers.ArticlesController extends BackboneBlog.Controlle
     @transition(view.render().el)
     
     # Subscribe for notifications
-    @subscribe '/model/article/updated', (data)->
-      model.set(new BackboneBlog.Models.Article(data).attributes)
+    @single_subscribe '/model/article/updated', (data)->
+      updated = new BackboneBlog.Models.Article(data)
+      if updated.id == model.id
+        model.set(updated.attributes)
 
   edit: (id)->  
     model = new BackboneBlog.Models.Article(id: id)
