@@ -46,7 +46,7 @@ class BackboneBlog.Controllers.ArticlesController extends BackboneBlog.Controlle
     @single_subscribe '/model/article/updated', (data)->
       updated = new BackboneBlog.Models.Article(data)
       if updated.id == model.id
-        view.showWarning()
+        view.warnOfUpdate()
         model.set(updated.attributes, {silent:true})
     
   new: ->

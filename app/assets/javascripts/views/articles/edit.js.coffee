@@ -23,6 +23,13 @@ class BackboneBlog.Views.ArticleEdit extends Backbone.View
     event.preventDefault()
     @form.commit()
     @model.save()
+    @submitted = true
+    
+  warnOfUpdate: ->
+    if @submitted
+      @submitted = false
+    else
+      @showWarning()
     
   goBack: (event)->
     event.preventDefault()
