@@ -35,6 +35,9 @@ window.BackboneBlog =
     # Initialize Routers
     new BackboneBlog.Routers.ArticlesRouter()
     
+    # Setup Widgets
+    new BackboneBlog.Controllers.RecentArticleWidgetController()
+    
     # Begin History
     Backbone.history.start
       pushState: true

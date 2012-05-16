@@ -6,8 +6,7 @@ class BackboneBlog.Routers.ArticlesRouter extends Backbone.Router
     'articles/:id': 'show'
     'articles/:id/edit': 'edit'
     
-  constructor: ->
-    super()
+  initialize: ->
     @controller = new BackboneBlog.Controllers.ArticlesController()
     
   index: ->

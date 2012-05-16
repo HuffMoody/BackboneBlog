@@ -4,7 +4,7 @@ class BackboneBlog.Controllers.ArticlesController extends BackboneBlog.Controlle
     collection = new BackboneBlog.Collections.Articles()
     collection.fetch()
     view = new BackboneBlog.Views.ArticlesIndex(collection: collection)
-    @transition(view.render().el)
+    $('#content').html(view.render().el)
     
     # Subscribe for notifications
     @single_subscribe '/model/article/created', (data)->
@@ -28,7 +28,7 @@ class BackboneBlog.Controllers.ArticlesController extends BackboneBlog.Controlle
     model = new BackboneBlog.Models.Article(id: id)
     model.fetch()
     view = new BackboneBlog.Views.ArticleShow(model: model)
-    @transition(view.render().el)
+    $('#content').html(view.render().el)
     
     # Subscribe for notifications
     @single_subscribe '/model/article/updated', (data)->
@@ -40,19 +40,16 @@ class BackboneBlog.Controllers.ArticlesController extends BackboneBlog.Controlle
     model = new BackboneBlog.Models.Article(id: id)
     model.fetch()
     view = new BackboneBlog.Views.ArticleEdit(model: model)
-    @transition(view.render().el)
+    $('#content').html(view.render().el)
     
     # Subscribe for notifications
     @single_subscribe '/model/article/updated', (data)->
       updated = new BackboneBlog.Models.Article(data)
       if updated.id == model.id
         view.warnOfUpdate()
-        model.set(updated.attributes, {silent:true})
+        model.set(updated.attributes, silent:true)
     
   new: ->
     model = new BackboneBlog.Models.Article()
     view = new BackboneBlog.Views.ArticleNew(model: model)
-    @transition(view.render().el)
-  
-  transition: (el)->
-    $('#content').html(el)
+    $('#content').html(view.render().el)

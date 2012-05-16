@@ -1,0 +1,2 @@
+<h2>Newest Article</h2>
+<p><strong><%= @article.get('title') + " (#{@article.get('id')})" %></strong></p>

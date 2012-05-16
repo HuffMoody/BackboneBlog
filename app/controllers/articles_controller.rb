@@ -3,7 +3,7 @@ class ArticlesController < ApplicationController
   respond_to :json
   
   def index
-    @articles = Article.all
+    @articles = Article.order("created_at DESC")
     respond_with @articles
   end
   
@@ -27,6 +27,11 @@ class ArticlesController < ApplicationController
   def create
     @article = Article.new params[:article]
     @article.save
+    respond_with @article
+  end
+  
+  def newest
+    @article = Article.order("created_at DESC").first
     respond_with @article
   end
 end
