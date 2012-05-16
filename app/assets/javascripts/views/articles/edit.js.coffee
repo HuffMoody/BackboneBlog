@@ -4,6 +4,7 @@ class BackboneBlog.Views.ArticleEdit extends Backbone.View
   events:
     'click .js-save-button': 'submitForm'
     'click .js-back-button': 'goBack'
+    'click .js-reload-article': 'reload'
     'submit form': 'submitForm'
   
   initialize: ->
@@ -26,3 +27,14 @@ class BackboneBlog.Views.ArticleEdit extends Backbone.View
   goBack: (event)->
     event.preventDefault()
     UrlHelper.navigate_to_collection('articles')
+    
+  showWarning: ->
+    @.$(".alert").removeClass('hidden')
+    
+  hideWarning: ->
+    @.$(".alert").addClass('hidden')
+  
+  reload: (event)->
+    event.preventDefault()
+    @hideWarning()
+    @render()

@@ -42,6 +42,13 @@ class BackboneBlog.Controllers.ArticlesController extends BackboneBlog.Controlle
     view = new BackboneBlog.Views.ArticleEdit(model: model)
     @transition(view.render().el)
     
+    # Subscribe for notifications
+    @single_subscribe '/model/article/updated', (data)->
+      updated = new BackboneBlog.Models.Article(data)
+      if updated.id == model.id
+        view.showWarning()
+        model.set(updated.attributes, {silent:true})
+    
   new: ->
     model = new BackboneBlog.Models.Article()
     view = new BackboneBlog.Views.ArticleNew(model: model)
