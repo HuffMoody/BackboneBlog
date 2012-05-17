@@ -1,2 +1,3 @@
-<h2>Newest Article</h2>
-<p><strong><%= @article.get('title') + " (#{@article.get('id')})" %></strong></p>
+<h2>Newest</h2>
+<% if @article.get('id'): %>
+  <p><strong><%= @article.get('title') %></strong> <span class="badge badge-info"><%= @article.get('id') %></span></p>

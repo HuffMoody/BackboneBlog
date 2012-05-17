@@ -10,20 +10,20 @@ module Notifiable
   private
   
     def notify_created
-      notify :created
+      notify "created"
     end
     
     def notify_updated
-      notify :updated
+      notify "updated/#{self.id}"
     end
     
     def notify_destroyed
-      notify :destroyed
+      notify "destroyed/#{self.id}"
     end
     
-    def notify(action)
+    def notify(suffix)
       message = { 
-        channel: "/model/#{self.class.name.downcase}/#{action}", 
+        channel: "/model/#{self.class.name.downcase}/#{suffix}", 
         data: self.to_json, 
         ext: { auth_token: FAYE_TOKEN } 
       }
